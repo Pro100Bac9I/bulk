@@ -15,13 +15,11 @@ bool TimedBlock::empty() const
 std::ostream& operator<<(std::ostream& os, const TimedBlock &i_block)
 {
   auto &commands = i_block.d_commands;
-  if (commands.size())
-  {
-    for (auto &command : commands)
-      os << command << ' ';
 
-    os << std::endl;
-  }
+  for (auto &command : commands)
+    os << command << ' ';
+
+  os << std::endl;
 
   return os;
 }

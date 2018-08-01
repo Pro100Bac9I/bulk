@@ -37,6 +37,9 @@ void CommandBlock::subscribe(std::unique_ptr<Observer> observer)
 
 void CommandBlock::notify()
 {
+  if (d_timedBlock->empty())
+    return;
+
   for (auto& sub : d_subscribers)
     sub->update(d_timedBlock);
 
