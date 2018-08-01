@@ -12,9 +12,9 @@ add_executable(bulk bulk.cpp
 )
 
 set_target_properties(bulk PROPERTIES
-  CXX_STANDARD 14
-  CXX_STANDARD_REQUIRED ON
-  COMPILE_OPTIONS -Wpedantic -Wall -Wextra
+	CXX_STANDART 14
+	CXX_STANDART_REQUIRED ON
+	COMPILE_OPTION -Wpedantic -Wall -Wextra
 )
 
 install(TARGETS bulk RUNTIME DESTINATION bin)
