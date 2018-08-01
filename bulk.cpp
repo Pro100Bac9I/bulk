@@ -1,4 +1,4 @@
-#include "Application.h"
+#include "LineProcessor.h"
 
 #include <string>
 
@@ -6,9 +6,9 @@ int main(int argc, char **argv)
 {
   if (argc < 2)
     return 1;
-  
-  Application app(std::stoi(argv[1]));
-  app.run();
+
+  LineProcessor processor(std::stoi(argv[1]));
+  processor.run();
 
   return 0;
 }

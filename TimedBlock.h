@@ -1,13 +1,9 @@
 #pragma once
 
 #include <vector>
+#include <string>
+#include <iostream>
 #include <ctime>
-
-enum class Status
-{
-  startBlock, endBlock,
-  openBracket, closeBracket
-};
 
 using Commands = std::vector<std::string>;
 
@@ -16,8 +12,10 @@ struct TimedBlock
   Commands d_commands;
   std::time_t d_timeStamp;
 
-  bool empty() const
-  {
-  	return d_commands.empty();
-  }
+  void clear();
+
+  bool empty() const;
+
+  friend std::ostream& operator<<(std::ostream& os, const TimedBlock &i_block);
 };
+

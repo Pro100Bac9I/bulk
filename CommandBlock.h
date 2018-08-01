@@ -3,10 +3,17 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include <ctime>
+#include <iostream>
 
-struct TimedBlock;
-enum class Status;
+enum class Status
+{
+  startBlock, endBlock,
+  openBracket, closeBracket
+};
+
 class Observer;
+struct TimedBlock;
 
 class CommandBlock
 {

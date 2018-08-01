@@ -1,5 +1,5 @@
 #include "Observer.h"
-#include "Metrics.h"
+#include "TimedBlock.h"
 
 #include <fstream>
 #include <iostream>
@@ -7,22 +7,14 @@
 
 void CoutObserver::update(std::shared_ptr<TimedBlock> timedBlock)
 {
-  auto &commands = timedBlock->d_commands;
-  for (auto &command : commands)
-    std::cout << command << ' ';
-
-  std::cout << std::endl;
+  std::cout << *timedBlock;
 }
 
 void LogObserver::update(std::shared_ptr<TimedBlock> timedBlock)
 {
   std::ofstream ofile(getFileName(timedBlock->d_timeStamp));
 
-  auto &commands = timedBlock->d_commands;
-  for (auto& command : commands)
-    ofile << command << ' ';
-
-  ofile << std::endl;
+  ofile << *timedBlock;
 
   ofile.close();
 }

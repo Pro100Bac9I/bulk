@@ -1,6 +1,6 @@
 #include "CommandBlock.h"
-#include "Metrics.h"
 #include "Observer.h"
+#include "TimedBlock.h"
 
 CommandBlock::CommandBlock(int i_len)
   : d_timedBlock(std::make_shared<TimedBlock>())
@@ -37,13 +37,10 @@ void CommandBlock::subscribe(std::unique_ptr<Observer> observer)
 
 void CommandBlock::notify()
 {
-  if (!d_timedBlock->empty())
-  {
-    for (auto& sub : d_subscribers)
-      sub->update(d_timedBlock);
+  for (auto& sub : d_subscribers)
+    sub->update(d_timedBlock);
 
-    d_timedBlock = std::make_shared<TimedBlock>();
-  }
+  d_timedBlock->clear();
 }
 
 void CommandBlock::append(const std::string & command)
@@ -60,3 +57,4 @@ void CommandBlock::append(const std::string & command)
   else
     d_timedBlock->d_commands.push_back(command);
 }
+

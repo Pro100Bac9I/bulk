@@ -8,8 +8,11 @@ class CommandBlock;
 class LineProcessor
 {
 public:
-  LineProcessor(std::shared_ptr<CommandBlock> i_block);
+  LineProcessor(int i_len);
 
+  void run();
+
+private:
   void processLine(const std::string &i_line);
 
 private:

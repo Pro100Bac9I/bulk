@@ -1,11 +1,28 @@
 #include "LineProcessor.h"
 #include "CommandBlock.h"
-#include "Metrics.h"
 
+#include "Observer.h"
 
-LineProcessor::LineProcessor(std::shared_ptr<CommandBlock> i_block)
-  : d_block(i_block)
-{}
+#include <string>
+#include <iostream>
+#include <sstream>
+
+LineProcessor::LineProcessor(int i_len)
+  :d_block(std::make_shared<CommandBlock>(i_len))
+{
+  d_block->subscribe(std::make_unique<CoutObserver>());
+  d_block->subscribe(std::make_unique<LogObserver>());
+}
+
+void LineProcessor::run()
+{
+  std::string line;
+
+  while (std::getline(std::cin, line))
+    processLine(line);
+
+  d_block->setStatus(Status::endBlock);
+}
 
 void LineProcessor::processLine(const std::string &line)
 {
@@ -24,3 +41,4 @@ void LineProcessor::processLine(const std::string &line)
   else
     d_block->append(line);
 }
+

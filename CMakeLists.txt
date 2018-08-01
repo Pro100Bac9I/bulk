@@ -1,14 +1,14 @@
 cmake_minimum_required(VERSION 3.2)
 
-project(bulk VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
+project(bulk VERSION 0.0.1)
 
 configure_file(version.h.in version.h)
 
 add_executable(bulk bulk.cpp
-	Application.cpp
 	CommandBlock.cpp
 	LineProcessor.cpp
 	Observer.cpp
+	TimedBlock.cpp
 )
 
 set_target_properties(bulk PROPERTIES
