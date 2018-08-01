@@ -5,7 +5,6 @@
 
 #include <string>
 #include <iostream>
-#include <sstream>
 
 LineProcessor::LineProcessor(int i_len)
   :d_block(std::make_shared<CommandBlock>(i_len))
